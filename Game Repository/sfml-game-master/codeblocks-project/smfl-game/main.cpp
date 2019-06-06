@@ -15,9 +15,10 @@ int main() {
     Image arvore_verde("arvore_verde.png");
     Image asfalto("asfalto.png");
     Image grama("grama.png");
-    Image arbusto("arbusto.png");
+    Image muro("muro.png");
     Image caixablue("caixa_azul.png");
     Image heart("heart.png");
+    Image folhas("folhas.png");
 
 
     char frase[100];
@@ -35,7 +36,7 @@ int main() {
     int vidas = 3;
     int xvida = random(210, 390), yvida = 0;
 
-    int nivel = 0;
+    int nivel = 1;
 
     float xcarro = 100, ycarro = 580;
     float speed = 5;
@@ -47,91 +48,172 @@ int main() {
 
         sfml.clear();
 
-        sfml.image(grama, 0, 0);
-        sfml.image(grama, 0, 60);
-        sfml.image(grama, 0, 120);
-        sfml.image(grama, 0, 180);
-        sfml.image(grama, 0, 240);
-        sfml.image(grama, 0, 300);
-        sfml.image(grama, 0, 360);
-        sfml.image(grama, 0, 420);
-        sfml.image(grama, 0, 480);
-        sfml.image(grama, 0, 540);
-        sfml.image(grama, 0, 600);
-        sfml.image(grama, 0, 660);
+        //-------------------- Cenário(Grama - primavera): --------------------------------
 
-        sfml.image(grama, 60, 0);
-        sfml.image(grama, 60, 60);
-        sfml.image(grama, 60, 120);
-        sfml.image(grama, 60, 180);
-        sfml.image(grama, 60, 240);
-        sfml.image(grama, 60, 300);
-        sfml.image(grama, 60, 360);
-        sfml.image(grama, 60, 420);
-        sfml.image(grama, 60, 480);
-        sfml.image(grama, 60, 540);
-        sfml.image(grama, 60, 600);
-        sfml.image(grama, 60, 660);
+        if(nivel == 1){
+            sfml.image(grama, 0, 0);
+            sfml.image(grama, 0, 60);
+            sfml.image(grama, 0, 120);
+            sfml.image(grama, 0, 180);
+            sfml.image(grama, 0, 240);
+            sfml.image(grama, 0, 300);
+            sfml.image(grama, 0, 360);
+            sfml.image(grama, 0, 420);
+            sfml.image(grama, 0, 480);
+            sfml.image(grama, 0, 540);
+            sfml.image(grama, 0, 600);
+            sfml.image(grama, 0, 660);
 
-        sfml.image(grama, 120, 0);
-        sfml.image(grama, 120, 60);
-        sfml.image(grama, 120, 120);
-        sfml.image(grama, 120, 180);
-        sfml.image(grama, 120, 240);
-        sfml.image(grama, 120, 300);
-        sfml.image(grama, 120, 360);
-        sfml.image(grama, 120, 420);
-        sfml.image(grama, 120, 480);
-        sfml.image(grama, 120, 540);
-        sfml.image(grama, 120, 600);
-        sfml.image(grama, 120, 660);
+            sfml.image(grama, 60, 0);
+            sfml.image(grama, 60, 60);
+            sfml.image(grama, 60, 120);
+            sfml.image(grama, 60, 180);
+            sfml.image(grama, 60, 240);
+            sfml.image(grama, 60, 300);
+            sfml.image(grama, 60, 360);
+            sfml.image(grama, 60, 420);
+            sfml.image(grama, 60, 480);
+            sfml.image(grama, 60, 540);
+            sfml.image(grama, 60, 600);
+            sfml.image(grama, 60, 660);
 
-        sfml.image(grama, 150, 0);
-        sfml.image(grama, 150, 60);
-        sfml.image(grama, 150, 120);
-        sfml.image(grama, 150, 180);
-        sfml.image(grama, 150, 240);
-        sfml.image(grama, 150, 300);
-        sfml.image(grama, 150, 360);
-        sfml.image(grama, 150, 420);
-        sfml.image(grama, 150, 480);
-        sfml.image(grama, 150, 540);
-        sfml.image(grama, 150, 600);
-        sfml.image(grama, 150, 660);
+            sfml.image(grama, 120, 0);
+            sfml.image(grama, 120, 60);
+            sfml.image(grama, 120, 120);
+            sfml.image(grama, 120, 180);
+            sfml.image(grama, 120, 240);
+            sfml.image(grama, 120, 300);
+            sfml.image(grama, 120, 360);
+            sfml.image(grama, 120, 420);
+            sfml.image(grama, 120, 480);
+            sfml.image(grama, 120, 540);
+            sfml.image(grama, 120, 600);
+            sfml.image(grama, 120, 660);
 
-        sfml.image(grama, 450, 0);
-        sfml.image(grama, 450, 60);
-        sfml.image(grama, 450, 120);
-        sfml.image(grama, 450, 180);
-        sfml.image(grama, 450, 240);
-        sfml.image(grama, 450, 300);
-        sfml.image(grama, 450, 360);
-        sfml.image(grama, 450, 420);
-        sfml.image(grama, 450, 480);
-        sfml.image(grama, 450, 540);
-        sfml.image(grama, 450, 600);
-        sfml.image(grama, 450, 660);
+            sfml.image(grama, 150, 0);
+            sfml.image(grama, 150, 60);
+            sfml.image(grama, 150, 120);
+            sfml.image(grama, 150, 180);
+            sfml.image(grama, 150, 240);
+            sfml.image(grama, 150, 300);
+            sfml.image(grama, 150, 360);
+            sfml.image(grama, 150, 420);
+            sfml.image(grama, 150, 480);
+            sfml.image(grama, 150, 540);
+            sfml.image(grama, 150, 600);
+            sfml.image(grama, 150, 660);
 
-        //Cenário(Grama)
+            sfml.image(grama, 450, 0);
+            sfml.image(grama, 450, 60);
+            sfml.image(grama, 450, 120);
+            sfml.image(grama, 450, 180);
+            sfml.image(grama, 450, 240);
+            sfml.image(grama, 450, 300);
+            sfml.image(grama, 450, 360);
+            sfml.image(grama, 450, 420);
+            sfml.image(grama, 450, 480);
+            sfml.image(grama, 450, 540);
+            sfml.image(grama, 450, 600);
+            sfml.image(grama, 450, 660);
 
-        sfml.image(arvore_verde, 0, 5);
-        sfml.image(arvore_verde, 0, 70);
-        sfml.image(arvore_verde, 0, 150);
-        sfml.image(arvore_verde, 0, 230);
-        sfml.image(arvore_verde, 0, 310);
-        sfml.image(arvore_verde, 0, 390);
-        sfml.image(arvore_verde, 0, 470);
-        sfml.image(arvore_verde, 0, 550);
-        sfml.image(arvore_verde, 0, 630);
+            //-------------------- Cenário(Grama - primavera) ---------------------------------
 
-        sfml.image(arvore_verde, 80, 5);
-        sfml.image(arvore_verde, 50, 70);
-        sfml.image(arvore_verde, 30, 150);
-        sfml.image(arvore_verde, 67, 230);
-        sfml.image(arvore_verde, 24, 310);
-        sfml.image(arvore_verde, 56, 390);
-        sfml.image(arvore_verde, 76, 470);
-        sfml.image(arvore_verde, 28, 550);
+            //------------------------ Cenário(Árvore - primavera): -------------------------------------
+
+            sfml.image(arvore_verde, 0, 5);
+            sfml.image(arvore_verde, 0, 70);
+            sfml.image(arvore_verde, 0, 150);
+            sfml.image(arvore_verde, 0, 230);
+            sfml.image(arvore_verde, 0, 310);
+            sfml.image(arvore_verde, 0, 390);
+            sfml.image(arvore_verde, 0, 470);
+            sfml.image(arvore_verde, 0, 550);
+            sfml.image(arvore_verde, 0, 630);
+
+            sfml.image(arvore_verde, 80, 5);
+            sfml.image(arvore_verde, 50, 70);
+            sfml.image(arvore_verde, 30, 150);
+            sfml.image(arvore_verde, 67, 230);
+            sfml.image(arvore_verde, 24, 310);
+            sfml.image(arvore_verde, 56, 390);
+            sfml.image(arvore_verde, 76, 470);
+            sfml.image(arvore_verde, 28, 550);
+        }
+
+        //------------------------ Cenário(Árvore - primavera) -------------------------------------
+
+        //------------------------ Cenário(Folhas - outono): -------------------------------
+
+        else if(nivel == 2){
+
+            sfml.image(folhas, 0, 0);
+            sfml.image(folhas, 0, 60);
+            sfml.image(folhas, 0, 120);
+            sfml.image(folhas, 0, 180);
+            sfml.image(folhas, 0, 240);
+            sfml.image(folhas, 0, 300);
+            sfml.image(folhas, 0, 360);
+            sfml.image(folhas, 0, 420);
+            sfml.image(folhas, 0, 480);
+            sfml.image(folhas, 0, 540);
+            sfml.image(folhas, 0, 600);
+            sfml.image(folhas, 0, 660);
+
+            sfml.image(folhas, 60, 0);
+            sfml.image(folhas, 60, 60);
+            sfml.image(folhas, 60, 120);
+            sfml.image(folhas, 60, 180);
+            sfml.image(folhas, 60, 240);
+            sfml.image(folhas, 60, 300);
+            sfml.image(folhas, 60, 360);
+            sfml.image(folhas, 60, 420);
+            sfml.image(folhas, 60, 480);
+            sfml.image(folhas, 60, 540);
+            sfml.image(folhas, 60, 600);
+            sfml.image(folhas, 60, 660);
+
+            sfml.image(folhas, 120, 0);
+            sfml.image(folhas, 120, 60);
+            sfml.image(folhas, 120, 120);
+            sfml.image(folhas, 120, 180);
+            sfml.image(folhas, 120, 240);
+            sfml.image(folhas, 120, 300);
+            sfml.image(folhas, 120, 360);
+            sfml.image(folhas, 120, 420);
+            sfml.image(folhas, 120, 480);
+            sfml.image(folhas, 120, 540);
+            sfml.image(folhas, 120, 600);
+            sfml.image(folhas, 120, 660);
+
+            sfml.image(folhas, 150, 0);
+            sfml.image(folhas, 150, 60);
+            sfml.image(folhas, 150, 120);
+            sfml.image(folhas, 150, 180);
+            sfml.image(folhas, 150, 240);
+            sfml.image(folhas, 150, 300);
+            sfml.image(folhas, 150, 360);
+            sfml.image(folhas, 150, 420);
+            sfml.image(folhas, 150, 480);
+            sfml.image(folhas, 150, 540);
+            sfml.image(folhas, 150, 600);
+            sfml.image(folhas, 150, 660);
+
+            sfml.image(folhas, 450, 0);
+            sfml.image(folhas, 450, 60);
+            sfml.image(folhas, 450, 120);
+            sfml.image(folhas, 450, 180);
+            sfml.image(folhas, 450, 240);
+            sfml.image(folhas, 450, 300);
+            sfml.image(folhas, 450, 360);
+            sfml.image(folhas, 450, 420);
+            sfml.image(folhas, 450, 480);
+            sfml.image(folhas, 450, 540);
+            sfml.image(folhas, 450, 600);
+            sfml.image(folhas, 450, 660);
+        }
+        //------------------------ Cenário(Folhas - outono) -------------------------------
+
+        //------------------------ Cenário(Asfalto) ------------------------------
 
         sfml.image(asfalto, 200, 0);
         sfml.image(asfalto, 200, 140);
@@ -151,8 +233,10 @@ int main() {
         sfml.image(asfalto, 400, 420);
         sfml.image(asfalto, 400, 560);
 
-        //Cenário(Asfalto)
+        //------------------------ Cenário(Asfalto) ------------------------------
 
+
+        //------------------------ Vidas descendo: -------------------------------
 
         sfml.image(heart, xvida, yvida+=3);
         if(yvida > 690){
@@ -192,39 +276,20 @@ int main() {
                 vidas++;
 
         }
+        //------------------------ Vidas descendo -------------------------------
 
-        sfml.image(arbusto, 175, 0);
-        sfml.image(arbusto, 175, 30);
-        sfml.image(arbusto, 175, 60);
-        sfml.image(arbusto, 175, 90);
-        sfml.image(arbusto, 175, 120);
-        sfml.image(arbusto, 175, 150);
-        sfml.image(arbusto, 175, 180);
-        sfml.image(arbusto, 175, 210);
-        sfml.image(arbusto, 175, 240);
-        sfml.image(arbusto, 175, 270);
-        sfml.image(arbusto, 175, 300);
-        sfml.image(arbusto, 175, 330);
-        sfml.image(arbusto, 175, 360);
-        sfml.image(arbusto, 175, 390);
-        sfml.image(arbusto, 175, 420);
-        sfml.image(arbusto, 175, 450);
-        sfml.image(arbusto, 175, 480);
-        sfml.image(arbusto, 175, 510);
-        sfml.image(arbusto, 175, 540);
-        sfml.image(arbusto, 175, 570);
-        sfml.image(arbusto, 175, 600);
-        sfml.image(arbusto, 175, 630);
-        sfml.image(arbusto, 175, 660);
-        sfml.image(arbusto, 175, 690);
 
-        //Cenário(Arbusto)
 
+        //---------------------------- Cenário(Placar): ---------------------------
+
+        sfml.image(caixablue, 550, 52);
         sfml.image(caixablue, 550, 202);
+        sfml.image(caixablue, 550, 352);
 
 
+        //---------------------------- Cenário(Placar) ---------------------------
 
-
+        //---------------------------- Movimentos do carro: ---------------------------
 
         if (sfml.keyIsDown(SFML::Key::Left)) {
 
@@ -246,8 +311,9 @@ int main() {
 
         sfml.image(carro, xcarro, ycarro);
 
-        //Movimentos do carro
+        //---------------------------- Movimentos do carro ---------------------------
 
+        //---------------------------- Tiro: ------------------------------------------
         if(!atirar){
 
             ytiro -= vtiro;
@@ -266,38 +332,48 @@ int main() {
             atirar = false;
         }
 
+        //---------------------------- Tiro ------------------------------------------
 
-        //Tiro
+        //---------------------------- Texto: ----------------------------------------
 
         sprintf(frase, "Pontos: %d", contaPontos);
-        sfml.text(frase, 570,50);
+        sfml.text(frase, 562,50);
+
         sprintf(frase, "Vidas: %d", vidas);
         sfml.text(frase, 570,200);
 
-        //Texto
+        sprintf(frase, "Nivel : %d", nivel);
+        sfml.text(frase, 570, 350);
+
+        //---------------------------- Texto -----------------------------------------
+
+        // --------------------------- Inimigo: --------------------------------------
 
         for(int i = 0; i < 10; i++){
 
-            yobstaculo[i] += 3;
+            // ----------------------- Niveis: ---------------------------------------
+            yobstaculo[i] += 2.5;
             nivel = 1;
 
-                if(contaPontos > 10){
-                    yobstaculo[i] += 3.5;
+                if(contaPontos >= 10){
+                    yobstaculo[i] += 2.6;
                     nivel = 2;
                 }
-                if(contaPontos > 30){
-                    yobstaculo[i] += 4;
+                if(contaPontos >= 50){
+                    yobstaculo[i] += 2.7;
                     nivel = 3;
                 }
-                if(contaPontos > 50){
-                    yobstaculo[i] += 5;
+                if(contaPontos >= 100){
+                    yobstaculo[i] += 2.8;
                     nivel = 5;
                 }
-                if(contaPontos > 50){
-                    yobstaculo[i] += 5.5;
+                if(contaPontos >= 150){
+                    yobstaculo[i] += 2.9;
                     nivel = 5;
                 }
         }
+
+        // ----------------------- Niveis ----------------------------------------
 
         for(int i = 0; i < 10; i++){
             if(yobstaculo[i] > 680) {
@@ -308,6 +384,8 @@ int main() {
             }
         }
 
+        // ------------------------------- Colisão(Carros): -----------------------------------
+
         for(int i = 0; i < 10; i++){
 
             if((xcarro > xobstaculo[i] && xcarro < xobstaculo[i] + 30)
@@ -345,10 +423,13 @@ int main() {
                 vidas--;
 
             }
-
         }
 
-        // Colisão(carros)
+        // ------------------------------- Colisão(Carros) -----------------------------------
+
+        // --------------------------- Inimigo -----------------------------------------------
+
+        // ------------------------------- Colisão(Tiro): -----------------------------------
 
         for(int i = 0; i < 10; i++){
 
@@ -369,7 +450,7 @@ int main() {
             sfml.image(inimigo1, xobstaculo[i], yobstaculo[i]);
         }
 
-        // Colisão
+        // ------------------------------- Colisão(Tiro) ------------------------------------
 
 
         sfml.display();
