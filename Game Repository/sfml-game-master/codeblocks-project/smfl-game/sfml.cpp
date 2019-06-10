@@ -14,7 +14,7 @@ SFML::SFML(int w, int h, const char* title) {
     _window.create(sf::VideoMode(w, h), title, sf::Style::Default, settings);
     _window.setFramerateLimit(120);
     _render_texture.create(w,h);
-    _font.loadFromFile("Calibri.ttf");
+    _font.loadFromFile("boldpixel.ttf");
 
     _fill = true;
     _stroke = false;
