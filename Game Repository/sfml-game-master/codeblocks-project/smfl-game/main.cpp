@@ -16,8 +16,8 @@ int main()
 
     Image carro1("carro_verde.png");
     Image carro2("carro_amarelo.png");
-    Image carro3("carro_vermelho.png");
-    Image carro4("carro_azul.png");
+    Image carro3("carro_azul.png");
+    Image carro4("carro_vermelho.png");
     Image carro5("carro_final.png");
 
     Image inimigo1("inimigo1.png");
@@ -44,13 +44,11 @@ int main()
     Image acelerador("acelerador.png");
     Image freio("freio.png");
 
+    Image telainicial("telainicial.png");
     Image gameover("gameover.png");
 
     Image kabum("explosion-sprite.png");
     bool animating = false;
-    bool KeyPressed = false;
-
-    char str[50] = "";
 
     int xanterior;
     int yanterior;
@@ -59,17 +57,19 @@ int main()
     int h = 100; //altura do objeto no sprite
 
     Sound bum("explosion.wav");
+    Sound tiro("tiro.wav");
     Sound vida("pegarvida.wav");
     Sound mudanivel("mudanivel.wav");
     Sound morreu("morreu.wav");
+    Sound batida("batida.wav");
 
+    Sound inicio("comecar.wav");
     Sound nivel1("nivel1.wav");
     Sound nivel2("nivel2.wav");
     Sound nivel3("nivel3.wav");
     Sound nivel4("nivel4.wav");
 
     char frase[100];
-    char nome[50];
 
     int contaPontos = 0;
 
@@ -81,19 +81,21 @@ int main()
         yobstaculo[i] = -random(0, 7000);
     }
 
-    int xtiro = -50, ytiro = 630;
+    float xcarro = 100, ycarro = 580;
+    float speed = 5;
+
+    int xtiro = -60, ytiro = ycarro-10;
+    float vtiro = 5;
     int vidas = 1;
     int xvida = random(210, 390), yvida = 0;
 
-    int tela = 2;
+    int tela = 1;
     int nivel = 1;
 
-    float xcarro = 100, ycarro = 580;
-    float speed = 5;
-    float vtiro = 3;
     bool atirar = true;
     bool toca = true;
     bool isplaying = false;
+    bool comeco = false;
 
     while (sfml.windowIsOpen())
     {
@@ -104,12 +106,24 @@ int main()
         if(tela == 1)
         {
 
-            //Tela de Inicio
+            sfml.image(telainicial, -35, 0);
+            if(!comeco)
+            {
+
+                inicio.play();
+                comeco = true;
+            }
+
+            if(sfml.keyIsDown(SFML::Key::Enter)){
+
+                tela = 2;
+            }
 
         }
 
         if(tela == 2)
         {
+            inicio.stop();
 
             //-------------------- Cenário(Grama - primavera - lado direito ): --------------------------------
 
@@ -828,11 +842,11 @@ int main()
                 vida.play();
 
             }
+
             //------------------------ Vidas descendo -------------------------------
 
 
-
-            //---------------------------- Cenário(Lado direito): ---------------------------
+            //---------------------------- Cenário(Lado direito): -------------------
 
             sfml.image(caixablue, 540, 52);
             sfml.image(caixablue, 540, 152);
@@ -843,7 +857,7 @@ int main()
 
             //---------------------------- Cenário(Placar) ---------------------------
 
-            //---------------------------- Movimentos do carro: ---------------------------
+            //---------------------------- Movimentos do carro: ----------------------
 
             if (sfml.keyIsDown(SFML::Key::Left))
             {
@@ -872,12 +886,12 @@ int main()
             //---------------------------- Desenho carro: ----------------------------------
             if(nivel == 1)
             {
-
                 sfml.image(carro1, xcarro, ycarro);
+
                 if(toca)
                 {
 
-                    //nivel1.play();
+                    nivel1.play();
                     toca = false;
                 }
 
@@ -887,13 +901,10 @@ int main()
 
                 if(!toca)
                 {
-
-                    //nivel1.stop();
-                    //nivel2.play();
+                    nivel1.stop();
+                    nivel2.play();
                     toca = true;
                 }
-
-                sfml.image(carro2, xcarro, ycarro);
 
             }
             else if(nivel == 3)
@@ -902,40 +913,22 @@ int main()
                 if(toca)
                 {
 
-                    //nivel2.stop();
-                    //nivel3.play();
+                    nivel2.stop();
+                    nivel4.play();
                     toca = false;
                 }
 
-                sfml.image(carro3, xcarro, ycarro);
-
-            }
-            else if(nivel == 4)
-            {
-
-                if(!toca)
-                {
-
-                    //nivel3.stop();
-                    //nivel4.play();
-                    toca = true;
-                }
-
-                sfml.image(carro4, xcarro, ycarro);
 
             }
             else if(nivel == 5)
             {
 
-                speed = 7;
                 if(toca)
                 {
 
                     //nivel5.play();
                     toca = false;
                 }
-
-                sfml.image(carro5, xcarro, ycarro);
 
             }
 
@@ -945,10 +938,68 @@ int main()
 
             //---------------------------- Movimentos do carro ----------------------------
 
+
+            // --------------------------- Inimigo: --------------------------------------
+
+            for(int i = 0; i < 10; i++)
+            {
+
+                // ----------------------- Niveis: ---------------------------------------
+                yobstaculo[i] += 3;
+                nivel = 1;
+
+                if(contaPontos >= 1)
+                {
+                    nivel = 2;
+                    sfml.image(carro2, xcarro, ycarro);
+                    yobstaculo[i] += 2.6;
+                    speed = 7;
+                    vtiro = 8;
+                }
+                if(contaPontos >= 5)
+                {
+                    nivel = 3;
+                    sfml.image(carro3, xcarro, ycarro);
+                    yobstaculo[i] += 2.7;
+                    speed = 10;
+                    vtiro = 13;
+                }
+                if(contaPontos >= 10)
+                {
+                    sfml.image(carro4, xcarro, ycarro);
+                    nivel = 4;
+                    yobstaculo[i] += 2.8;
+                    speed = 12;
+                    vtiro = 17;
+                }
+                if(contaPontos >= 20)
+                {
+                    nivel = 5;
+                    sfml.image(carro5, xcarro, ycarro);
+                    yobstaculo[i] += 2.9;
+                    speed = 14;
+                    vtiro = 20;
+                }
+            }
+
+            // ----------------------- Niveis ----------------------------------------
+
+            for(int i = 0; i < 10; i++)
+            {
+                if(yobstaculo[i] > 680)
+                {
+
+                    xobstaculo[i] = random(210,460);
+                    yobstaculo[i] = -random(0,7000);
+                    contaPontos++;
+                }
+            }
+
+            //---------------------------- Inimigo: ---------------------------------------
+
             //---------------------------- Tiro: ------------------------------------------
             if(!atirar)
             {
-
                 ytiro -= vtiro;
                 sfml.rect(xtiro,ytiro,5,10);
             }
@@ -956,14 +1007,14 @@ int main()
             if(ytiro < 0)
             {
 
-                xtiro = -50;
+                xtiro = -60;
                 ytiro = ycarro;
                 atirar = true;
 
             }
             if(sfml.keyIsDown(SFML::Key::Space) && atirar)
             {
-
+                tiro.play();
                 xtiro = xcarro+22.5;
                 atirar = false;
             }
@@ -983,49 +1034,7 @@ int main()
 
             //---------------------------- Texto -----------------------------------------
 
-            // --------------------------- Inimigo: --------------------------------------
 
-            for(int i = 0; i < 10; i++)
-            {
-
-                // ----------------------- Niveis: ---------------------------------------
-                yobstaculo[i] += 3;
-                nivel = 1;
-
-                if(contaPontos >= 10)
-                {
-                    yobstaculo[i] += 2.6;
-                    nivel = 2;
-                }
-                if(contaPontos >= 30)
-                {
-                    yobstaculo[i] += 2.7;
-                    nivel = 3;
-                }
-                if(contaPontos >= 50)
-                {
-                    yobstaculo[i] += 2.8;
-                    nivel = 4;
-                }
-                if(contaPontos >= 70)
-                {
-                    yobstaculo[i] += 2.9;
-                    nivel = 5;
-                }
-            }
-
-            // ----------------------- Niveis ----------------------------------------
-
-            for(int i = 0; i < 10; i++)
-            {
-                if(yobstaculo[i] > 680)
-                {
-
-                    xobstaculo[i] = random(210,460);
-                    yobstaculo[i] = -random(0,7000);
-                    contaPontos++;
-                }
-            }
 
             // ------------------------------- Colisão(Carros): -----------------------------------
 
@@ -1035,41 +1044,38 @@ int main()
                 if((xcarro > xobstaculo[i] && xcarro < xobstaculo[i] + 30)
                         && (ycarro > yobstaculo[i] && ycarro < yobstaculo[i] + 70))
                 {
-
+                    batida.play();
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
                     vidas--;
-
                 }
 
                 if((xcarro + 30 > xobstaculo[i] && xcarro + 30 < xobstaculo[i] + 30)
                         && (ycarro > yobstaculo[i] && ycarro < yobstaculo[i] + 70))
                 {
-
+                    batida.play();
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
                     vidas--;
-
                 }
 
                 if((xcarro > xobstaculo[i] && xcarro < xobstaculo[i] + 30)
                         && (ycarro + 70 > yobstaculo[i] && ycarro + 70 < yobstaculo[i] + 70))
                 {
 
+                    batida.play();
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
                     vidas--;
-
                 }
 
                 if((xcarro + 30 > xobstaculo[i] && xcarro + 30 < xobstaculo[i] + 30)
                         && (ycarro + 70 > yobstaculo[i] && ycarro + 70 < yobstaculo[i] + 70))
                 {
-
+                    batida.play();
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
                     vidas--;
-
                 }
             }
 
@@ -1086,6 +1092,7 @@ int main()
                 {
 
                     animating = true;
+                    bum.play();
                     xtiro = -50;
                     ytiro = ycarro;
                     atirar = true;
@@ -1147,198 +1154,59 @@ int main()
                 }
 
             }
+        }
 
             //---------------------------- Desenho inimigo -----------------------------------
 
             // ------------------------------- Colisão(Tiro) ---------------------------------
 
-            // ------------------------------- Troca Tela(Carro): ----------------------------
+            // ------------------------------- Troca Tela: ----------------------------
+
             if(vidas == 0)
 
             {
+                tela = 3;
+
+            }
+
+
+            if(tela == 3)
+            {
                 sfml.image(gameover, -90, 0);
+                vidas = 0;
 
-                sprintf(nome, "Digite seu nome: %s", str);
-                if(!KeyPressed)
+                nivel1.stop();
+                nivel2.stop();
+                nivel3.stop();
+                nivel4.stop();
+                //nivel5.stop();
+
+
+
+                if(!isplaying)
                 {
-
-                    if(sfml.keyIsDown(SFML::Key::A))
-                    {
-                        strcat(str,"A");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::B))
-                    {
-                        strcat(str,"B");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::C))
-                    {
-                        strcat(str,"C");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::D))
-                    {
-                        strcat(str,"D");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::E))
-                    {
-                        strcat(str,"E");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::F))
-                    {
-                        strcat(str,"F");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::G))
-                    {
-                        strcat(str,"G");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::H))
-                    {
-                        strcat(str,"H");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::I))
-                    {
-                        strcat(str,"I");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::J))
-                    {
-                        strcat(str,"J");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::K))
-                    {
-                        strcat(str,"K");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::L))
-                    {
-                        strcat(str,"L");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::M))
-                    {
-                        strcat(str,"M");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::N))
-                    {
-                        strcat(str,"N");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::O))
-                    {
-                        strcat(str,"O");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::P))
-                    {
-                        strcat(str,"P");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::Q))
-                    {
-                        strcat(str,"Q");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::R))
-                    {
-                        strcat(str,"R");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::S))
-                    {
-                        strcat(str,"S");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::T))
-                    {
-                        strcat(str,"T");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::U))
-                    {
-                        strcat(str,"U");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::V))
-                    {
-                        strcat(str,"V");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::X))
-                    {
-                        strcat(str,"X");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::Y))
-                    {
-                        strcat(str,"Y");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::Z))
-                    {
-                        strcat(str,"Z");
-                        KeyPressed = true;
-                    }
-                    else if(sfml.keyIsDown(SFML::Key::W))
-                    {
-                        strcat(str,"W");
-                        KeyPressed = true;
-                    }
-                    else
-                    {
-                        KeyPressed = false;
-                    }
+                    morreu.play();
+                    isplaying = true;
                 }
 
-                sfml.text(nome, 210,400);
-                //tela = 3;
+                sprintf(frase, "Try Again -> Press Enter");
+                sfml.text(frase, 210,400);
+
+                // ------------------------------- Troca Tela (3) ------------------------------------
+
+                if(sfml.keyIsDown(SFML::Key::Enter))
+                {
+                    tela = 2;
+                    vidas = 3;
+                    contaPontos = 0;
+                    toca = true;
+                    isplaying = false;
+                }
 
             }
-        }
 
-
-        if(tela == 3)
-        {
-
-            sfml.image(gameover, -90, 0);
-
-            if(!isplaying)
-            {
-                morreu.play();
-                isplaying = true;
-            }
-
-            sprintf(frase, "Try Again -> Press Enter");
-            sfml.text(frase, 210,400);
-            sprintf(frase, "Ranking -> Press SPACE");
-            sfml.text(frase, 220,470);
-
-            // ------------------------------- Troca Tela (3) ------------------------------------
-
-            if(sfml.keyIsDown(SFML::Key::Enter))
-            {
-                tela = 2;
-                vidas = 3;
-                contaPontos = 0;
-            }
-
-            if(sfml.keyIsDown(SFML::Key::Space))
-            {
-                //Ranking
-            }
-        }
 
         sfml.display();
-
     }
-
     return 0;
 }
