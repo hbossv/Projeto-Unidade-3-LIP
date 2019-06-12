@@ -54,8 +54,8 @@ int main()
     int xanterior;
     int yanterior;
     int j = 0;
-    int w = 100;
-    int h = 100;
+    int w = 100; //largura do objeto no sprite
+    int h = 100; //altura do objeto no sprite
 
     Sound bum("explosion.wav");
     Sound tiro("tiro.wav");
@@ -104,26 +104,34 @@ int main()
 
         sfml.clear();
 
+
         if(tela == 1)
         {
 
             sfml.image(telainicial, -35, 0);
             if(!comeco)
             {
+
                 inicio.play();
                 comeco = true;
             }
 
             if(sfml.keyIsDown(SFML::Key::Enter)){
+
                 tela = 2;
             }
+
         }
 
         if(tela == 2)
         {
             inicio.stop();
+
+            //-------------------- Cenário(Grama - primavera - lado direito ): --------------------------------
+
             if(nivel == 1)
             {
+
                 sfml.image(grama, 465, 0);
                 sfml.image(grama, 465, 60);
                 sfml.image(grama, 465, 120);
@@ -191,8 +199,14 @@ int main()
 
 
             }
+
+            //-------------------- Cenário(Grama - primavera - lado direito)--------------------------------
+
+            //-------------------- Cenário(Grama - outono - lado direito ): --------------------------------
+
             if(nivel == 2)
             {
+
                 sfml.image(folhas, 465, 0);
                 sfml.image(folhas, 465, 60);
                 sfml.image(folhas, 465, 120);
@@ -257,10 +271,17 @@ int main()
                 sfml.image(folhas, 700, 540);
                 sfml.image(folhas, 700, 600);
                 sfml.image(folhas, 700, 660);
+
+
             }
+
+            //-------------------- Cenário(Grama - primavera - lado direito)--------------------------------
+
+            //-------------------- Cenário(Grama - inverno - lado direito ): --------------------------------
 
             if(nivel == 3 || nivel == 4)
             {
+
                 sfml.image(neve, 465, 0);
                 sfml.image(neve, 465, 60);
                 sfml.image(neve, 465, 120);
@@ -325,28 +346,40 @@ int main()
                 sfml.image(neve, 700, 540);
                 sfml.image(neve, 700, 600);
                 sfml.image(neve, 700, 660);
+
+
             }
 
-                sfml.image(asfalto, 200, 0);
-                sfml.image(asfalto, 200, 140);
-                sfml.image(asfalto, 200, 280);
-                sfml.image(asfalto, 200, 420);
-                sfml.image(asfalto, 200, 560);
+            //-------------------- Cenário(Grama - inverno - lado direito)--------------------------------
 
-                sfml.image(asfalto, 300, 0);
-                sfml.image(asfalto, 300, 140);
-                sfml.image(asfalto, 300, 280);
-                sfml.image(asfalto, 300, 420);
-                sfml.image(asfalto, 300, 560);
+            //------------------------ Cenário(Asfalto) ------------------------------
 
-                sfml.image(asfalto, 400, 0);
-                sfml.image(asfalto, 400, 140);
-                sfml.image(asfalto, 400, 280);
-                sfml.image(asfalto, 400, 420);
-                sfml.image(asfalto, 400, 560);
+            sfml.image(asfalto, 200, 0);
+            sfml.image(asfalto, 200, 140);
+            sfml.image(asfalto, 200, 280);
+            sfml.image(asfalto, 200, 420);
+            sfml.image(asfalto, 200, 560);
+
+            sfml.image(asfalto, 300, 0);
+            sfml.image(asfalto, 300, 140);
+            sfml.image(asfalto, 300, 280);
+            sfml.image(asfalto, 300, 420);
+            sfml.image(asfalto, 300, 560);
+
+            sfml.image(asfalto, 400, 0);
+            sfml.image(asfalto, 400, 140);
+            sfml.image(asfalto, 400, 280);
+            sfml.image(asfalto, 400, 420);
+            sfml.image(asfalto, 400, 560);
+
+            //------------------------ Cenário(Asfalto) ------------------------------
+
+
+            //-------------------- Cenário(Grama - primavera): --------------------------------
 
             if(nivel == 1)
             {
+
                 sfml.image(grama, 0, 0);
                 sfml.image(grama, 0, 60);
                 sfml.image(grama, 0, 120);
@@ -399,6 +432,10 @@ int main()
                 sfml.image(grama, 150, 600);
                 sfml.image(grama, 150, 660);
 
+                //-------------------- Cenário(Grama - primavera) ---------------------------------
+
+                //------------------------ Cenário(Árvore - primavera): -------------------------------------
+
                 sfml.image(primavera, 0, 5);
                 sfml.image(primavera, 0, 70);
                 sfml.image(primavera, 0, 150);
@@ -417,6 +454,11 @@ int main()
                 sfml.image(primavera, 56, 390);
                 sfml.image(primavera, 76, 470);
                 sfml.image(primavera, 28, 550);
+
+
+                //------------------------ Cenário(Árvore - primavera) -------------------------------------
+
+                //------------------------ Cenário(Arbusto - primavera): -------------------------------------
 
                 sfml.image(arbusto1, 187, 0);
                 sfml.image(arbusto1, 187, 30);
@@ -469,8 +511,13 @@ int main()
                 sfml.image(arbusto1, 495, 690);
             }
 
+            //------------------------ Cenário(Arbusto - primavera) -------------------------------------
+
+            //------------------------ Cenário(Folhas - outono): -------------------------------
+
             else if(nivel == 2)
             {
+
                 sfml.image(folhas, 0, 0);
                 sfml.image(folhas, 0, 60);
                 sfml.image(folhas, 0, 120);
@@ -523,6 +570,10 @@ int main()
                 sfml.image(folhas, 150, 600);
                 sfml.image(folhas, 150, 660);
 
+                //------------------------ Cenário(Folhas - outono) -------------------------------
+
+                //------------------------ Cenário(Árvore - outono): -------------------------------------
+
                 sfml.image(outono, 0, 0);
                 sfml.image(outono, 0, 70);
                 sfml.image(outono, 0, 150);
@@ -541,6 +592,10 @@ int main()
                 sfml.image(outono, 56, 390);
                 sfml.image(outono, 76, 470);
                 sfml.image(outono, 28, 550);
+
+                //------------------------ Cenário(Árvore - outono) -------------------------------------
+
+                //------------------------ Cenário(Arbusto - outono): -------------------------------------
 
                 sfml.image(arbusto2, 187, 0);
                 sfml.image(arbusto2, 187, 30);
@@ -593,8 +648,13 @@ int main()
                 sfml.image(arbusto2, 495, 690);
             }
 
+            //------------------------ Cenário(Arbusto - outono) -------------------------------------
+
+            //-------------------- Cenário(Neve - inverno): --------------------------------
+
             if(nivel == 3 || nivel == 4)
             {
+
                 sfml.image(neve, 0, 0);
                 sfml.image(neve, 0, 60);
                 sfml.image(neve, 0, 120);
@@ -647,6 +707,11 @@ int main()
                 sfml.image(neve, 150, 600);
                 sfml.image(neve, 150, 660);
 
+
+                //-------------------- Cenário(Neve - inverno) ---------------------------------
+
+                //------------------------ Cenário(Arbusto - inverno): -------------------------------------
+
                 sfml.image(arbusto3, 187, 0);
                 sfml.image(arbusto3, 187, 30);
                 sfml.image(arbusto3, 187, 60);
@@ -697,6 +762,10 @@ int main()
                 sfml.image(arbusto3, 495, 660);
                 sfml.image(arbusto3, 495, 690);
 
+                //------------------------ Cenário(Arbusto - inverno) -------------------------------------
+
+                //------------------------ Cenário(Árvore - inverno): -------------------------------------
+
                 sfml.image(inverno, 0, 0);
                 sfml.image(inverno, 0, 70);
                 sfml.image(inverno, 0, 150);
@@ -717,48 +786,69 @@ int main()
                 sfml.image(inverno, 28, 550);
             }
 
+            //------------------------ Cenário(Árvore - inverno) -------------------------------------
+
             else if(nivel == 5)
             {
+
                 sfml.background(random(0,255), random(0,255), random(0,255));
             }
+
+
+            //------------------------ Vidas descendo: -------------------------------
 
             sfml.image(heart, xvida, yvida+=4);
             if(yvida > 690)
             {
+
                 yvida = -3000;
+
             }
 
             if((xcarro > xvida) && (xcarro < xvida + 32)
                     && (ycarro > yvida) && (ycarro < yvida + 32))
             {
+
                 yvida = -3000;
                 vidas++;
                 vida.play();
+
             }
 
             if((xcarro + 30 > xvida) && (xcarro + 30 < xvida + 32)
                     && (ycarro > yvida && ycarro < yvida + 32))
             {
+
                 yvida = -3000;
                 vidas++;
                 vida.play();
+
             }
 
             if((xcarro > xvida) && (xcarro < xvida + 32)
                     && (ycarro + 65 > yvida) && (ycarro + 65 < yvida + 32))
             {
+
                 yvida = -3000;
                 vidas++;
                 vida.play();
+
             }
 
             if((xcarro + 30 > xvida) && (xcarro + 30 < xvida + 32)
                     && (ycarro + 65 > yvida) && (ycarro + 65 < yvida + 32))
             {
+
                 yvida = -3000;
                 vidas++;
                 vida.play();
+
             }
+
+            //------------------------ Vidas descendo -------------------------------
+
+
+            //---------------------------- Cenário(Lado direito): -------------------
 
             sfml.image(caixablue, 540, 52);
             sfml.image(caixablue, 540, 152);
@@ -767,30 +857,43 @@ int main()
             sfml.image(acelerador, 620, 560);
             sfml.image(volante, 550, 420);
 
+
+            //---------------------------- Cenário(Placar) ---------------------------
+
+            //---------------------------- Movimentos do carro: ----------------------
+
             if (sfml.keyIsDown(SFML::Key::Left))
             {
+
                 xcarro -= speed;
+
             }
             else if(sfml.keyIsDown(SFML::Key::Right))
             {
+
                 xcarro += speed;
             }
 
             if(xcarro > 460)
             {
+
                 xcarro = 460;
+
             }
             else if(xcarro < 210)
             {
+
                 xcarro = 210;
             }
 
+            //---------------------------- Desenho carro: ----------------------------------
             if(nivel == 1)
             {
                 sfml.image(carro1, xcarro, ycarro);
 
                 if(!toca)
                 {
+
                     nivel1.play();
                     toca = true;
                 }
@@ -798,15 +901,18 @@ int main()
             }
             else if(nivel == 2)
             {
+
                 if(toca)
                 {
                     nivel1.stop();
                     nivel2.play();
                     toca = false;
                 }
+
             }
             else if(nivel == 3)
             {
+
                 if(!toca)
                 {
 
@@ -814,19 +920,34 @@ int main()
                     nivel4.play();
                     toca = true;
                 }
+
+
             }
             else if(nivel == 5)
             {
+
                 if(toca)
                 {
                     nivel4.stop();
                     nivel5.play();
                     toca = false;
                 }
+
             }
+
+
+            //---------------------------- Desenho carro -----------------------------------
+
+
+            //---------------------------- Movimentos do carro ----------------------------
+
+
+            // --------------------------- Inimigo: --------------------------------------
 
             for(int i = 0; i < 10; i++)
             {
+
+                // ----------------------- Niveis: ---------------------------------------
                 yobstaculo[i] += 3;
                 nivel = 1;
 
@@ -864,16 +985,22 @@ int main()
                 }
             }
 
+            // ----------------------- Niveis ----------------------------------------
+
             for(int i = 0; i < 10; i++)
             {
                 if(yobstaculo[i] > 680)
                 {
+
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
                     contaPontos++;
                 }
             }
 
+            //---------------------------- Inimigo: ---------------------------------------
+
+            //---------------------------- Tiro: ------------------------------------------
             if(!atirar)
             {
                 ytiro -= vtiro;
@@ -882,9 +1009,11 @@ int main()
 
             if(ytiro < 0)
             {
+
                 xtiro = -60;
                 ytiro = ycarro;
                 atirar = true;
+
             }
             if(sfml.keyIsDown(SFML::Key::Space) && atirar)
             {
@@ -892,6 +1021,10 @@ int main()
                 xtiro = xcarro+22.5;
                 atirar = false;
             }
+
+            //---------------------------- Tiro ------------------------------------------
+
+            //---------------------------- Texto: ----------------------------------------
 
             sprintf(frase, "Pontos: %d", contaPontos);
             sfml.text(frase, 547,53);
@@ -902,8 +1035,15 @@ int main()
             sprintf(frase, "Nivel: %d", nivel);
             sfml.text(frase, 550, 253);
 
+            //---------------------------- Texto -----------------------------------------
+
+
+
+            // ------------------------------- Colisão(Carros): -----------------------------------
+
             for(int i = 0; i < 10; i++)
             {
+
                 if((xcarro > xobstaculo[i] && xcarro < xobstaculo[i] + 30)
                         && (ycarro > yobstaculo[i] && ycarro < yobstaculo[i] + 70))
                 {
@@ -925,6 +1065,7 @@ int main()
                 if((xcarro > xobstaculo[i] && xcarro < xobstaculo[i] + 30)
                         && (ycarro + 70 > yobstaculo[i] && ycarro + 70 < yobstaculo[i] + 70))
                 {
+
                     batida.play();
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
@@ -941,11 +1082,18 @@ int main()
                 }
             }
 
+            // ------------------------------- Colisão(Carros) -----------------------------------
+
+            // --------------------------- Inimigo -----------------------------------------------
+
+            // ------------------------------- Colisão(Tiro): -----------------------------------
+
             for(int i = 0; i < 10; i++)
             {
                 bool colidirTiro = (dist(xtiro+2.5, ytiro+5, xobstaculo[i]+20, yobstaculo[i]+20) < 19) ? true : false;
                 if(colidirTiro)
                 {
+
                     animating = true;
                     bum.play();
                     xtiro = -50;
@@ -958,6 +1106,7 @@ int main()
 
                     xobstaculo[i] = random(210,460);
                     yobstaculo[i] = -random(0,7000);
+
                 }
 
                 if(animating)
@@ -972,54 +1121,78 @@ int main()
                 }
             }
 
+            //---------------------------- Desenho inimigo: ----------------------------------
+
             for(int i = 0; i < 10; i++)
             {
 
                 if(nivel == 1)
                 {
+
                     sfml.image(inimigo1, xobstaculo[i], yobstaculo[i]);
+
                 }
                 else if(nivel == 2)
                 {
+
                     sfml.image(inimigo2, xobstaculo[i], yobstaculo[i]);
+
                 }
                 else if(nivel == 3)
                 {
+
                     sfml.image(inimigo3, xobstaculo[i], yobstaculo[i]);
+
                 }
                 else if(nivel == 4)
                 {
+
                     sfml.image(inimigo4, xobstaculo[i], yobstaculo[i]);
+
                 }
                 else if(nivel == 5)
                 {
+
                     sfml.image(inimigo5, xobstaculo[i], yobstaculo[i]);
                 }
 
             }
         }
 
+            //---------------------------- Desenho inimigo -----------------------------------
+
+            // ------------------------------- Colisão(Tiro) ---------------------------------
+
+            // ------------------------------- Troca Tela: ----------------------------
+
             if(vidas == 0)
 
             {
                 tela = 3;
+
             }
+
 
             if(tela == 3)
             {
                 sfml.image(gameover, -90, 0);
+
                 vidas = 0;
+
                 nivel1.stop();
                 nivel2.stop();
                 nivel3.stop();
                 nivel4.stop();
                 nivel5.stop();
 
+
+
                 if(!isplaying)
                 {
                     morreu.play();
                     isplaying = true;
                 }
+
 
                 sprintf(frase, "Seu Score foi %d", contaPontos);
                 sfml.text(frase, 260,400);
@@ -1035,28 +1208,34 @@ int main()
 
                     sprintf(frase, "(Menos vergonhoso!!!)");
                     sfml.text(frase, 270,450);
+
                 }
 
                 else if(contaPontos > 20 && contaPontos <= 50){
 
                     sprintf(frase, "(Tá até indo bem...)");
                     sfml.text(frase, 260,450);
+
                 }
 
                 else if(contaPontos > 50 && contaPontos <= 80){
 
                     sprintf(frase, "Reiosse");
                     sfml.text(frase, 290,450);
+
                 }
 
                 else if(contaPontos > 80 && contaPontos <= 100){
 
                     sprintf(frase, "BOSS");
                     sfml.text(frase, 340,450);
+
                 }
 
                 sprintf(frase, "Try Again -> Press Enter");
                 sfml.text(frase, 210,500);
+
+                // ------------------------------- Troca Tela (3) ------------------------------------
 
                 if(sfml.keyIsDown(SFML::Key::Enter))
                 {
@@ -1070,6 +1249,7 @@ int main()
                 }
 
             }
+
 
         sfml.display();
     }
