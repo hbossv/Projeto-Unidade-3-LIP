@@ -2,7 +2,6 @@
 #include "util.h"
 #include <cstring>
 #include <iostream>
-#include <fstream>
 
 using namespace util;
 using namespace std;
@@ -1039,7 +1038,7 @@ int main()
 
                 else if(contaPontos > 20 && contaPontos <= 50){
 
-                    sprintf(frase, "(Tá até indo bem...)");
+                    sprintf(frase, "(TÃ¡ atÃ© indo bem...)");
                     sfml.text(frase, 260,450);
                 }
 
