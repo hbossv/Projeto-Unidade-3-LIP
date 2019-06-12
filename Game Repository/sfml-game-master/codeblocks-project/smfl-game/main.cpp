@@ -43,6 +43,7 @@ int main()
     Image heart("heart.png");
     Image acelerador("acelerador.png");
     Image freio("freio.png");
+    Image volante("volante.png");
 
     Image telainicial("telainicial.png");
     Image gameover("gameover.png");
@@ -68,6 +69,7 @@ int main()
     Sound nivel2("nivel2.wav");
     Sound nivel3("nivel3.wav");
     Sound nivel4("nivel4.wav");
+    Sound nivel5("nivel5.wav");
 
     char frase[100];
 
@@ -93,7 +95,7 @@ int main()
     int nivel = 1;
 
     bool atirar = true;
-    bool toca = true;
+    bool toca = false;
     bool isplaying = false;
     bool comeco = false;
 
@@ -853,6 +855,7 @@ int main()
             sfml.image(caixablue, 540, 252);
             sfml.image(freio, 540, 600);
             sfml.image(acelerador, 620, 560);
+            sfml.image(volante, 550, 420);
 
 
             //---------------------------- Cenário(Placar) ---------------------------
@@ -888,34 +891,34 @@ int main()
             {
                 sfml.image(carro1, xcarro, ycarro);
 
-                if(toca)
+                if(!toca)
                 {
 
                     nivel1.play();
-                    toca = false;
+                    toca = true;
                 }
 
             }
             else if(nivel == 2)
             {
 
-                if(!toca)
+                if(toca)
                 {
                     nivel1.stop();
                     nivel2.play();
-                    toca = true;
+                    toca = false;
                 }
 
             }
             else if(nivel == 3)
             {
 
-                if(toca)
+                if(!toca)
                 {
 
                     nivel2.stop();
                     nivel4.play();
-                    toca = false;
+                    toca = true;
                 }
 
 
@@ -925,8 +928,8 @@ int main()
 
                 if(toca)
                 {
-
-                    //nivel5.play();
+                    nivel4.stop();
+                    nivel5.play();
                     toca = false;
                 }
 
@@ -961,7 +964,7 @@ int main()
                     nivel = 3;
                     sfml.image(carro3, xcarro, ycarro);
                     yobstaculo[i] += 2.7;
-                    speed = 10;
+                    speed = 9;
                     vtiro = 13;
                 }
                 if(contaPontos >= 10)
@@ -969,16 +972,16 @@ int main()
                     sfml.image(carro4, xcarro, ycarro);
                     nivel = 4;
                     yobstaculo[i] += 2.8;
-                    speed = 12;
-                    vtiro = 17;
+                    speed = 10;
+                    vtiro = 15;
                 }
                 if(contaPontos >= 20)
                 {
                     nivel = 5;
                     sfml.image(carro5, xcarro, ycarro);
                     yobstaculo[i] += 2.9;
-                    speed = 14;
-                    vtiro = 20;
+                    speed = 12;
+                    vtiro = 17;
                 }
             }
 
@@ -1173,13 +1176,14 @@ int main()
             if(tela == 3)
             {
                 sfml.image(gameover, -90, 0);
+
                 vidas = 0;
 
                 nivel1.stop();
                 nivel2.stop();
                 nivel3.stop();
                 nivel4.stop();
-                //nivel5.stop();
+                nivel5.stop();
 
 
 
@@ -1189,8 +1193,47 @@ int main()
                     isplaying = true;
                 }
 
+
+                sprintf(frase, "Seu Score foi %d", contaPontos);
+                sfml.text(frase, 260,400);
+
+                if(contaPontos <= 10){
+
+                    sprintf(frase, "(Vergonhoso!!!)");
+                    sfml.text(frase, 280,450);
+
+                }
+
+                else if(contaPontos > 10 && contaPontos <= 20){
+
+                    sprintf(frase, "(Menos vergonhoso!!!)");
+                    sfml.text(frase, 270,450);
+
+                }
+
+                else if(contaPontos > 20 && contaPontos <= 50){
+
+                    sprintf(frase, "(Tá até indo bem...)");
+                    sfml.text(frase, 260,450);
+
+                }
+
+                else if(contaPontos > 50 && contaPontos <= 80){
+
+                    sprintf(frase, "Reiosse");
+                    sfml.text(frase, 290,450);
+
+                }
+
+                else if(contaPontos > 80 && contaPontos <= 100){
+
+                    sprintf(frase, "BOSS");
+                    sfml.text(frase, 340,450);
+
+                }
+
                 sprintf(frase, "Try Again -> Press Enter");
-                sfml.text(frase, 210,400);
+                sfml.text(frase, 210,500);
 
                 // ------------------------------- Troca Tela (3) ------------------------------------
 
@@ -1198,9 +1241,11 @@ int main()
                 {
                     tela = 2;
                     vidas = 3;
+                    nivel = 1;
                     contaPontos = 0;
-                    toca = true;
+                    toca = false;
                     isplaying = false;
+                    vtiro = 5;
                 }
 
             }
