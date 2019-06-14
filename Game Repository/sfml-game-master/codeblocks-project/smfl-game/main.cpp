@@ -88,7 +88,7 @@ int main()
 
     int xtiro = -60, ytiro = ycarro-10;
     float vtiro = 5;
-    int vidas = 1;
+    int vidas = 3;
     int xvida = random(210, 390), yvida = 0;
 
     int tela = 1;
@@ -951,7 +951,7 @@ int main()
                 yobstaculo[i] += 3;
                 nivel = 1;
 
-                if(contaPontos >= 1)
+                if(contaPontos >= 10)
                 {
                     nivel = 2;
                     sfml.image(carro2, xcarro, ycarro);
@@ -959,7 +959,7 @@ int main()
                     speed = 7;
                     vtiro = 8;
                 }
-                if(contaPontos >= 5)
+                if(contaPontos >= 25)
                 {
                     nivel = 3;
                     sfml.image(carro3, xcarro, ycarro);
@@ -967,7 +967,7 @@ int main()
                     speed = 9;
                     vtiro = 13;
                 }
-                if(contaPontos >= 10)
+                if(contaPontos >= 40)
                 {
                     sfml.image(carro4, xcarro, ycarro);
                     nivel = 4;
@@ -975,7 +975,7 @@ int main()
                     speed = 10;
                     vtiro = 15;
                 }
-                if(contaPontos >= 20)
+                if(contaPontos >= 50)
                 {
                     nivel = 5;
                     sfml.image(carro5, xcarro, ycarro);
@@ -1165,7 +1165,7 @@ int main()
 
             // ------------------------------- Troca Tela: ----------------------------
 
-            if(vidas == 0)
+            if(vidas <= 0)
 
             {
                 tela = 3;
@@ -1177,15 +1177,11 @@ int main()
             {
                 sfml.image(gameover, -90, 0);
 
-                vidas = 0;
-
                 nivel1.stop();
                 nivel2.stop();
                 nivel3.stop();
                 nivel4.stop();
                 nivel5.stop();
-
-
 
                 if(!isplaying)
                 {
@@ -1220,15 +1216,15 @@ int main()
 
                 else if(contaPontos > 50 && contaPontos <= 80){
 
-                    sprintf(frase, "Reiosse");
-                    sfml.text(frase, 290,450);
+                    sprintf(frase, "(Reiosse...)");
+                    sfml.text(frase, 310,450);
 
                 }
 
-                else if(contaPontos > 80 && contaPontos <= 100){
+                else if(contaPontos > 80){
 
-                    sprintf(frase, "BOSS");
-                    sfml.text(frase, 340,450);
+                    sprintf(frase, "BOSS!");
+                    sfml.text(frase, 310,450);
 
                 }
 
